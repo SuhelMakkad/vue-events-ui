@@ -18,7 +18,7 @@
       <h3>Name & describe your event</h3>
 
       <label>Title</label>
-      <input v-model="event.title" type="text" placeholder="Title" />
+      <input v-model="event.title" type="text" placeholder="Title" required />
 
       <label>Description</label>
       <input v-model="event.description" type="text" placeholder="Description" />
@@ -26,14 +26,14 @@
       <h3>Where is your event?</h3>
 
       <label>Location</label>
-      <input v-model="event.location" type="text" placeholder="Location" />
+      <input v-model="event.location" type="text" placeholder="Location" required />
 
       <h3>When is your event?</h3>
       <label>Date</label>
-      <input v-model="event.date" type="text" placeholder="Date" />
+      <input v-model="event.date" type="text" placeholder="Date" required />
 
       <label>Time</label>
-      <input v-model="event.time" type="text" placeholder="Time" />
+      <input v-model="event.time" type="text" placeholder="Time" required />
 
       <button type="submit">Submit</button>
     </form>
@@ -45,6 +45,7 @@ import { ref } from "vue";
 import { useStore } from "vuex";
 
 import { v4 as uuid } from "uuid";
+import { postEvent } from "@/services/EventService";
 
 export default {
   setup() {
@@ -74,7 +75,7 @@ export default {
     const onSubmit = () => {
       event.value.id = uuid();
       event.value.organizer = store.state.user;
-      console.log("Event:", event.value);
+      postEvent(event.value);
     };
 
     return {

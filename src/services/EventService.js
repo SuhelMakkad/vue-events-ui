@@ -37,8 +37,14 @@ const defaultEvents = [
 
 export const setDefaultEvents = () => setJSON(EVENTS_KEY, defaultEvents);
 
-const getEvents = () => getStoredJSON(EVENTS_KEY);
+export const getEvents = () => getStoredJSON(EVENTS_KEY);
 
-const getEvent = (id) => getEvents()?.find((event) => event.id === String(id)) ?? null;
+export const getEvent = (id) => getEvents()?.find((event) => event.id === String(id)) ?? null;
 
-export { getEvents, getEvent };
+export const postEvent = (event) => {
+  const prevEvents = getEvents();
+  let events = [event];
+
+  if (prevEvents) events = [...prevEvents, event];
+  setJSON(EVENTS_KEY, events);
+};
