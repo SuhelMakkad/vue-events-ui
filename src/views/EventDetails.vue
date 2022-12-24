@@ -7,9 +7,8 @@
 </template>
 
 <script>
-import { ref } from "vue";
-
-import { getEvent } from "@/services/EventService";
+import { computed } from "vue";
+import {  useStore} from "vuex";
 
 export default {
   props: {
@@ -20,8 +19,10 @@ export default {
   },
 
   setup(props) {
-    const res = getEvent(props.id);
-    const event = ref(res);
+    const store = useStore()
+    store.dispatch("fetchEvent", props.id);
+
+    const event = computed(() => store.state.event)
 
     return { event };
   },
