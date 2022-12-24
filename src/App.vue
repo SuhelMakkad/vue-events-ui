@@ -20,13 +20,6 @@
   </router-view>
 </template>
 
-<script setup>
-import { getEvents, setDefaultEvents } from "@/services/EventService";
-
-const events = getEvents();
-if (!events) setDefaultEvents();
-</script>
-
 <style>
 body {
   margin: 0;
@@ -51,15 +44,20 @@ button {
   border: none;
   border-radius: 6px;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s linear;
+  transition-property: transform, box-shadow;
+  transition: 0.2s linear;
 }
 
 button:hover {
-  -webkit-transform: scale(1.02);
-  transform: scale(1.01);
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
 h2 {
@@ -77,11 +75,14 @@ h4 {
   font-weight: 700;
 }
 
-input {
+input,
+select {
   display: block;
   width: 100%;
   height: 30px;
   margin-bottom: 24px;
+  border: 1px solid;
+  border-radius: 4px;
 }
 
 input[type="text"] {
@@ -89,12 +90,12 @@ input[type="text"] {
 }
 
 input:focus {
-  border-color: #16c0b0;
+  border-color: #008777;
   outline: 0;
 }
 
 select:focus {
-  border-color: #16c0b0;
+  border-color: #008777;
   outline: 0;
 }
 

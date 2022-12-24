@@ -4,7 +4,7 @@
   <div class="form-container">
     <form @submit.prevent="onSubmit">
       <label>Select a category: </label>
-      <select v-model="event.category">
+      <select v-model="event.category" required>
         <option
           v-for="option in categories"
           :value="option"
@@ -21,7 +21,7 @@
       <input v-model="event.title" type="text" placeholder="Title" required />
 
       <label>Description</label>
-      <input v-model="event.description" type="text" placeholder="Description" />
+      <input v-model="event.description" type="text" placeholder="Description" required />
 
       <h3>Where is your event?</h3>
 
@@ -45,7 +45,6 @@ import { ref } from "vue";
 import { useStore } from "vuex";
 
 import { v4 as uuid } from "uuid";
-import { postEvent } from "@/services/EventService";
 
 export default {
   setup() {
@@ -73,9 +72,13 @@ export default {
     });
 
     const onSubmit = () => {
-      event.value.id = uuid();
-      event.value.organizer = store.state.user;
-      postEvent(event.value);
+      const newEvent = {
+        ...event.value,
+        id: uuid(),
+        organizer: store.state.user,
+      };
+
+      store.dispatch("createEvent", newEvent);
     };
 
     return {

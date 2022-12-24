@@ -1,14 +1,14 @@
 <template>
   <h1>Events for Good</h1>
-  <div class="events">
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
+
+  <div v-if="events" class="events">
+    <EventCard v-for="event in events" :key="event?.id" :event="event" />
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
-
-import { getEvents } from "@/services/EventService";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
 import EventCard from "@/components/EventCard.vue";
 
@@ -20,8 +20,10 @@ export default {
   },
 
   setup() {
-    const res = getEvents();
-    const events = ref(res);
+    const store = useStore();
+    store.dispatch("fetchEvents");
+
+    const events = computed(() => store.state.events);
 
     return { events };
   },
