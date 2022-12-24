@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { useStore } from "vuex";
 
@@ -49,6 +50,7 @@ import { v4 as uuid } from "uuid";
 export default {
   setup() {
     const store = useStore();
+    const router = useRouter();
 
     const categories = [
       "sustainability",
@@ -62,15 +64,20 @@ export default {
 
     const event = ref({});
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
       const newEvent = {
         ...event.value,
         id: uuid(),
         organizer: store.state.user,
       };
 
-      store.dispatch("createEvent", newEvent);
-      event.value = {};
+      await store.dispatch("createEvent", newEvent);
+      router.push({
+        name: "EventDetails",
+        params: {
+          id: newEvent.id,
+        },
+      });
     };
 
     return {
