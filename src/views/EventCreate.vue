@@ -42,9 +42,14 @@
 
 <script>
 import { ref } from "vue";
+import { useStore } from "vuex";
+
+import { v4 as uuid } from "uuid";
 
 export default {
   setup() {
+    const store = useStore();
+
     const categories = [
       "sustainability",
       "nature",
@@ -67,6 +72,8 @@ export default {
     });
 
     const onSubmit = () => {
+      event.value.id = uuid();
+      event.value.organizer = store.state.user;
       console.log("Event:", event.value);
     };
 

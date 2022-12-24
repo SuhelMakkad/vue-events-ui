@@ -8,7 +8,7 @@
 <script>
 import { ref } from "vue";
 
-import EventService from "@/services/EventService";
+import { getEvents } from "@/services/EventService";
 
 import EventCard from "@/components/EventCard.vue";
 
@@ -19,9 +19,9 @@ export default {
     EventCard,
   },
 
-  async setup() {
-    const res = await EventService.getEvents();
-    const events = ref(res.data);
+  setup() {
+    const res = getEvents();
+    const events = ref(res);
 
     return { events };
   },

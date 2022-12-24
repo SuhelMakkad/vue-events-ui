@@ -1,21 +1,15 @@
 <template>
-  <Suspense>
-    <template #default>
-      <div>
-        <h1>{{ event.title }}</h1>
-        <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
-        <p>{{ event.description }}</p>
-      </div>
-    </template>
-    
-    <template #fallback> Loading... </template>
-  </Suspense>
+  <div>
+    <h1>{{ event.title }}</h1>
+    <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
+    <p>{{ event.description }}</p>
+  </div>
 </template>
 
 <script>
 import { ref } from "vue";
 
-import EventService from "@/services/EventService";
+import { getEvent } from "@/services/EventService";
 
 export default {
   props: {
@@ -25,9 +19,9 @@ export default {
     },
   },
 
-  async setup(props) {
-    const res = await EventService.getEvent(props.id);
-    const event = ref(res.data);
+  setup(props) {
+    const res = getEvent(props.id);
+    const event = ref(res);
 
     return { event };
   },

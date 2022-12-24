@@ -20,6 +20,13 @@
   </router-view>
 </template>
 
+<script setup>
+import { getEvents, setDefaultEvents } from "@/services/EventService";
+
+const events = getEvents();
+if (!events) setDefaultEvents();
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
