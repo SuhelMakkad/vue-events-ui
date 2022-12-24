@@ -1,4 +1,5 @@
 # vue-events-ui
+[Link to the Live App](https://suhelmakkad.github.io/vue-events-ui/)
 
 ## Project setup
 ```
