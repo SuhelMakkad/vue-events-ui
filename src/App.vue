@@ -1,7 +1,8 @@
 <template>
   <nav>
-    <router-link :to="{ name: 'home' }">Home</router-link> |
-    <router-link :to="{ name: 'about' }">About</router-link>
+    <router-link :to="{ name: 'EventList' }">Home</router-link> |
+    <router-link :to="{ name: 'AboutView' }">About</router-link> |
+    <router-link :to="{ name: 'EventCreate' }">Create Event</router-link>
   </nav>
 
   <router-view v-slot="{ Component }">
