@@ -21,8 +21,6 @@ export default {
 
   setup() {
     const store = useStore();
-    store.dispatch("fetchEvents");
-
     const events = computed(() => store.state.events);
 
     return { events };

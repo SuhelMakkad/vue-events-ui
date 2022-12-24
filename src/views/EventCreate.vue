@@ -60,16 +60,7 @@ export default {
       "community",
     ];
 
-    const event = ref({
-      id: "",
-      category: "",
-      title: "",
-      description: "",
-      location: "",
-      date: "",
-      time: "",
-      organizer: "",
-    });
+    const event = ref({});
 
     const onSubmit = () => {
       const newEvent = {
@@ -79,6 +70,7 @@ export default {
       };
 
       store.dispatch("createEvent", newEvent);
+      event.value = {};
     };
 
     return {

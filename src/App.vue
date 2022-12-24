@@ -20,6 +20,13 @@
   </router-view>
 </template>
 
+<script setup>
+import { useStore } from "vuex";
+
+const store = useStore();
+store.dispatch("fetchEvents");
+</script>
+
 <style>
 body {
   margin: 0;
