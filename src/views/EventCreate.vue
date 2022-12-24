@@ -78,3 +78,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10%;
+}
+</style>
