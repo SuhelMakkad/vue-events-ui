@@ -71,7 +71,8 @@ export default {
         organizer: store.state.user,
       };
 
-      await store.dispatch("createEvent", newEvent);
+      await store.dispatch("createEvent", newEvent)
+
       router.push({
         name: "EventDetails",
         params: {
