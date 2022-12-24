@@ -20,15 +20,19 @@ export default {
 <style scoped>
 .event-card {
   padding: 20px;
-  width: 250px;
-  cursor: pointer;
-  border: 1px solid #39495c;
   margin-bottom: 18px;
+  width: 250px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #576a82;
+  transition-property: transform, box-shadow;
+  transition: 200ms ease;
+  cursor: pointer;
 }
 
 .event-card:hover {
   transform: scale(1.01);
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 20px 2px rgba(0, 0, 0, 0.1);
 }
 
 .event-link {
